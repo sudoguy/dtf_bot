@@ -1,0 +1,28 @@
+FROM python:3.7-alpine as base
+
+FROM base as builder
+
+RUN apk add --no-cache --virtual .build-deps \
+    gcc \
+    python3-dev \
+    musl-dev \
+    postgresql-dev \
+    && pip install --no-cache-dir psycopg2-binary \
+    && apk del --no-cache .build-deps
+RUN pip install poetry
+
+RUN mkdir /install
+
+WORKDIR /install
+COPY requirements.txt /requirements.txt
+
+RUN pip install --install-option="--prefix=/install" -r /requirements.txt
+
+FROM base
+
+COPY --from=builder /install /usr/local
+COPY . /app
+
+WORKDIR /app
+
+ENTRYPOINT ["/bin/bash", "/src/entrypoint.sh"]
