@@ -15,7 +15,7 @@ from dtf_bot.celery import app
     max_retries=20,
     retry_backoff=True,
     retry_backoff_max=30,
-    rate_limit="3/s",
+    rate_limit="5/s",
 )
 def update_entry(entry_id: int):
     dtf = DTFHelper()
