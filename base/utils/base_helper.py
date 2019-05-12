@@ -14,7 +14,7 @@ class BaseHelper:
         _url = urljoin(self.base_url, url)
 
         response = requests.get(_url, headers=self.headers)
-        if response.status_code == 404:
+        if response.status_code in (403, 404, 500):
             raise EntryNotFound
         if not response:
             raise InternalServiceError(

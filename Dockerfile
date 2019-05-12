@@ -1,8 +1,13 @@
-FROM python:3.7-alpine
+FROM python:3.6-alpine
 
 RUN apk add --no-cache --virtual .build-deps \
     gcc \
     python3-dev \
+    # spacy
+    g++ \
+    gfortran \
+    libevent-dev \
+    # spacy end
     libffi-dev \
     musl-dev \
     postgresql-dev \

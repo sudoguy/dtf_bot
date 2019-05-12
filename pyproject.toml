@@ -6,7 +6,7 @@ authors = ["Evgeny Kemerov <eskemerov@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 django = "^2.2"
 djangorestframework = "^3.9"
 python-dotenv = "^0.10.1"
@@ -14,12 +14,19 @@ psycopg2-binary = "^2.8"
 uwsgi = "^2.0"
 celery = {version = "^4.3", extras= ["redis"]}
 requests = "^2.21"
+markovify = "^0.7.1"
+pandas = "^0.24.2"
+pymorphy2 = "^0.8.0"
+spacy = "=2.0.18"
+textgenrnn = "^1.5"
+tensorflow = "^1.13"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.3"
 flake8 = "^3.7"
 pylint-django = "^2.0"
 black = {version = "^18.3-alpha.0",allows-prereleases = true}
+jupyter = "^1.0"
 
 [tool.black]
 line-length = 100
