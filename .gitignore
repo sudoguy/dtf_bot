@@ -121,3 +121,6 @@ postgres-data
 redis-data
 
 pip-wheel-metadata
+
+# spacy ru model
+ru2
