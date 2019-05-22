@@ -33,17 +33,6 @@ services:
     restart: always
     volumes:
       - redis-data:/data
-    
-  # rabbitmq:
-  #   image: "rabbitmq:latest"
-  #   environment:
-  #     RABBITMQ_DEFAULT_USER: ${RABBIT_MQ_USER}
-  #     RABBITMQ_DEFAULT_PASS: ${RABBIT_MQ_PASSWORD}
-  #     RABBITMQ_DEFAULT_VHOST: "/"
-  #   restart: always
-  #   ports:
-  #     - "15672:15672"
-  #     - "${RABBIT_MQ_PORT}:5672"
 
   db:
     image: postgres:latest
