@@ -1,0 +1,5 @@
+.ru
+postgres-data
+pip-wheel-metadata
+dtf_bot.egg-info
+redis-data
