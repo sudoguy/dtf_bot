@@ -32,7 +32,7 @@ services:
       - "${REDIS_PORT}:6379"
     restart: always
     volumes:
-      - redis-data:/data
+      - ./redis-data:/data
 
   db:
     image: postgres:latest
@@ -45,6 +45,3 @@ services:
       POSTGRES_DB: ${POSTGRES_DB_NAME}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
-
-volumes:
-  redis-data:
