@@ -27,7 +27,7 @@ class NewComment(APIView):
         new_comment = Comment(
             id=data["id"],
             text=data["text"],
-            reply_to=data["reply_to"],
+            reply_to=data.get("reply_to", {}).get("id"),
             last_response=data,
             entry=entry,
         )
