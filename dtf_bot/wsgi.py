@@ -11,10 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 from dotenv import find_dotenv, load_dotenv
+from sentry_sdk.integrations.wsgi import SentryWsgiMiddleware
 
 load_dotenv(find_dotenv())
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dtf_bot.settings")
 
-application = get_wsgi_application()
+application = SentryWsgiMiddleware(get_wsgi_application())
