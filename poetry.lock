@@ -844,6 +844,23 @@ python-versions = "*"
 version = "1.5.0"
 
 [[package]]
+category = "main"
+description = "Python client for Sentry (https://getsentry.com)"
+name = "sentry-sdk"
+optional = false
+python-versions = "*"
+version = "0.8.0"
+
+[package.dependencies]
+certifi = "*"
+urllib3 = "*"
+
+[package.extras]
+bottle = ["bottle (>=0.12.13)"]
+falcon = ["falcon (>=1.4)"]
+flask = ["flask (>=0.8)", "blinker (>=1.1)"]
+
+[[package]]
 category = "dev"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
@@ -992,7 +1009,7 @@ python-versions = "*"
 version = "1.11.1"
 
 [metadata]
-content-hash = "1924ba2641e20a4fe0b9be6166899b16262279c032d1592dd5af05cf6bfccf68"
+content-hash = "53fc19a5a03fa4b2f03682c3492a5dfd0cc9a45087f0134fd7a8df28ae11087c"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -1061,6 +1078,7 @@ qtconsole = ["a667558c7b1e1442a2e5bcef1686c55e096efd0b58d8b2a0a8415f4579991ee3",
 redis = ["6946b5dca72e86103edc8033019cc3814c031232d339d5f4533b02ea85685175", "8ca418d2ddca1b1a850afa1680a7d2fd1f3322739271de4b704e0d4668449273"]
 requests = ["11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4", "9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31"]
 send2trash = ["60001cc07d707fe247c94f74ca6ac0d3255aabcb930529690897ca2a39db28b2", "f1691922577b6fa12821234aeb57599d887c4900b9ca537948d2dac34aea888b"]
+sentry-sdk = ["e308129104567cee9f8848ed5098de17cbccc19bd21417c8980d47f80f1409ec", "f5819df450d7b0696be69a0c6d70a09e4890a3844ee8ccb7a461794135bd5965"]
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]
 sqlparse = ["40afe6b8d4b1117e7dff5504d7a8ce07d9a1b15aeeade8a2d10f130a834f8177", "7c3dca29c022744e95b547e867cee89f4fce4373f3549ccd8797d8eb52cdb873"]
 terminado = ["d9d012de63acb8223ac969c17c3043337c2fcfd28f3aea1ee429b345d01ef460", "de08e141f83c3a0798b050ecb097ab6259c3f0331b2f7b7750c9075ced2c20c2"]

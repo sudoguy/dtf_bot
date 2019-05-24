@@ -14,6 +14,7 @@ psycopg2-binary = "^2.8"
 uwsgi = "^2.0"
 celery = {version = "^4.3", extras= ["redis"]}
 requests = "^2.21"
+sentry-sdk = "^0.8.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.3"
