@@ -18,7 +18,7 @@ class Comment(BaseModel):
     is_pinned = models.BooleanField(default=False)
     is_edited = models.BooleanField(default=False)
 
-    level = models.SmallIntegerField()
+    level = models.SmallIntegerField(null=True)
     source_id = models.SmallIntegerField(choices=SOURCE_CHOICES, null=True, default=UNKNOWN)
     last_response = JSONField()
 
