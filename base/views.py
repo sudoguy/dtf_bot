@@ -18,12 +18,10 @@ class NewComment(APIView):
             update_entry(entry_id)
             entry = Entry.objects.get(id=entry_id)
 
+        reply_to = data["reply_to"]["id"] if data["reply_to"] else None
+
         new_comment = Comment(
-            id=data["id"],
-            text=data["text"],
-            reply_to=data["reply_to"] or data["reply_to"]["id"],
-            last_response=data,
-            entry=entry,
+            id=data["id"], text=data["text"], reply_to=reply_to, last_response=data, entry=entry
         )
         new_comment.save()
 
