@@ -1,3 +1,5 @@
+import logging
+
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -6,9 +8,14 @@ from base.models import Comment, Entry
 from base.tasks import update_entry
 
 
+logger = logging.getLogger(__name__)
+
+
 class NewComment(APIView):
     def post(self, request):
         data = request.data["data"]
+        logger.info(data)
+
         entry_id = data["content"]["id"]
 
         try:
