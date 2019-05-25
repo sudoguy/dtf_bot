@@ -217,6 +217,17 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 category = "main"
+description = "Modern template for Django admin interface with improved functionality"
+name = "django-jet"
+optional = false
+python-versions = "*"
+version = "1.0.8"
+
+[package.dependencies]
+Django = "*"
+
+[[package]]
+category = "main"
 description = "Web APIs for Django, made easy."
 name = "djangorestframework"
 optional = false
@@ -1009,7 +1020,7 @@ python-versions = "*"
 version = "1.11.1"
 
 [metadata]
-content-hash = "53fc19a5a03fa4b2f03682c3492a5dfd0cc9a45087f0134fd7a8df28ae11087c"
+content-hash = "cee98eb95bf4f4003077e02ab887da8d295419cabb6c6b83c7585eb3757163be"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -1030,6 +1041,7 @@ colorama = ["05eed71e2e327246ad6b38c540c4a3117230b19679b875190486ddd2d721422d", 
 decorator = ["86156361c50488b84a3f148056ea716ca587df2f0de1d34750d35c21312725de", "f069f3a01830ca754ba5258fde2278454a0b5b79e0d7f5c13b3b97e57d4acff6"]
 defusedxml = ["6687150770438374ab581bb7a1b327a847dd9c5749e396102de3fad4e8a3ef93", "f684034d135af4c6cbb949b8a4d2ed61634515257a67299e5f940fbaa34377f5"]
 django = ["6fcc3cbd55b16f9a01f37de8bcbe286e0ea22e87096557f1511051780338eaea", "bb407d0bb46395ca1241f829f5bd03f7e482f97f7d1936e26e98dacb201ed4ec"]
+django-jet = ["f521dc0873023afa198d2b57687e0593ee62022bd50fa59506dfce69b101cd9e"]
 djangorestframework = ["376f4b50340a46c15ae15ddd0c853085f4e66058f97e4dbe7d43ed62f5e60651", "c12869cfd83c33d579b17b3cb28a2ae7322a53c3ce85580c2a2ebe4e3f56c4fb"]
 entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19", "c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"]
 flake8 = ["859996073f341f2670741b51ec1e67a01da142831aa1fdc6242dbf88dffbe661", "a796a115208f5c03b18f332f7c11729812c8c3ded6c46319c59b53efd3819da8"]
