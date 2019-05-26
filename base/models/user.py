@@ -11,6 +11,6 @@ class User(BaseModel):
     url = models.TextField()
     avatar_url = models.CharField(max_length=255, null=True)
 
-    karma = models.IntegerField()
-    user_hash = models.CharField(max_length=255)
+    karma = models.IntegerField(null=True)
+    user_hash = models.CharField(max_length=255, null=True)
     last_response = JSONField()
