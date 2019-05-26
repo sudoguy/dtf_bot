@@ -1,6 +1,6 @@
 import logging
 
-from base.models import Entry, SkippedEntry
+from base.models import Entry, SkippedEntry, User
 from base.exceptions import EntryNotFound
 
 from .base_helper import BaseHelper
@@ -32,7 +32,22 @@ class DTFHelper(BaseHelper):
         intro = entry["intro"]
 
         defaults = {"title": title, "intro": intro, "last_response": entry}
-        saved_entry, created = Entry.objects.update_or_create(id=entry_id, defaults=defaults)
+        _, created = Entry.objects.update_or_create(id=entry_id, defaults=defaults)
 
         action = "Created" if created else "Updated"
         logging.info(f"{action} entry #{entry_id}")
+
+    def pull_user(self, user_id: int):
+        url = f"user/{user_id}"
+        user = self.send_request(url)
+
+        user_id = user["id"]
+        name = user["name"]
+        url = user["url"]
+        avatar_url = user["avatar_url"]
+
+        defaults = {"name": name, "url": url, "avatar_url": avatar_url, "last_response": user}
+        _, created = User.objects.update_or_create(id=user_id, defaults=defaults)
+
+        action = "Created" if created else "Updated"
+        logging.info(f"{action} user #{user_id}")

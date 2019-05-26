@@ -22,6 +22,18 @@ def update_entry(entry_id: int):
     dtf.pull_entry(entry_id)
 
 
+@app.task(
+    autoretry_for=(InternalServiceError,),
+    max_retries=20,
+    retry_backoff=True,
+    retry_backoff_max=30,
+    rate_limit="5/s",
+)
+def update_user(user_id: int):
+    dtf = DTFHelper()
+    dtf.pull_user(user_id)
+
+
 @periodic_task(
     run_every=(crontab(minute="*/1")), name="task_update_last_entries", ignore_result=True
 )

@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from base.models import Comment, Entry
-from base.tasks import update_entry
+from base.tasks import update_entry, update_user
 
 
 class NewComment(APIView):
@@ -19,6 +19,9 @@ class NewComment(APIView):
             entry = Entry.objects.get(id=entry_id)
 
         reply_to = data["reply_to"]["id"] if data["reply_to"] else None
+        creator_id = data["creator"]["id"]
+
+        update_user.delay(creator_id)
 
         new_comment = Comment(
             id=data["id"], text=data["text"], reply_to=reply_to, last_response=data, entry=entry
