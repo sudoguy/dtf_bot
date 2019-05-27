@@ -1,13 +1,37 @@
 import logging
 
+from celery import group
 from celery.decorators import periodic_task
 from celery.task.schedules import crontab
-from celery import group
+from django.core.exceptions import ObjectDoesNotExist
 
 from base.exceptions import InternalServiceError
-from base.models import Entry, SkippedEntry
+from base.models import Comment, Entry, SkippedEntry
 from base.utils.dtf_helper import DTFHelper
 from dtf_bot.celery import app
+
+
+@app.task(
+    autoretry_for=(InternalServiceError,), max_retries=20, retry_backoff=True, retry_backoff_max=30
+)
+def handle_comment(data: dict):
+    entry_id = data["content"]["id"]
+
+    try:
+        entry = Entry.objects.get(id=entry_id)
+    except ObjectDoesNotExist:
+        update_entry(entry_id)
+        entry = Entry.objects.get(id=entry_id)
+
+    reply_to = data["reply_to"]["id"] if data["reply_to"] else None
+    creator_id = data["creator"]["id"]
+
+    update_user.delay(creator_id)
+
+    new_comment = Comment(
+        id=data["id"], text=data["text"], reply_to=reply_to, last_response=data, entry=entry
+    )
+    new_comment.save()
 
 
 @app.task(
