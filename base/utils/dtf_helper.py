@@ -1,7 +1,7 @@
 import logging
 
 from base.models import Entry, SkippedEntry, User
-from base.exceptions import EntryNotFound
+from base.exceptions import ObjectNotFound
 
 from .base_helper import BaseHelper
 
@@ -21,7 +21,7 @@ class DTFHelper(BaseHelper):
         try:
             if not entry:
                 entry = self.send_request(url)
-        except EntryNotFound:
+        except ObjectNotFound:
             SkippedEntry.objects.update_or_create(id=entry_id)
             logging.info(f"Entry #{entry_id} not found, skipped")
 

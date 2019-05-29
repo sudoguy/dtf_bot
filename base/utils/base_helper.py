@@ -1,7 +1,7 @@
 import os
 from urllib.parse import urljoin
 
-from base.exceptions import EntryNotFound, InternalServiceError
+from base.exceptions import ObjectNotFound, InternalServiceError
 
 import requests
 
@@ -15,7 +15,7 @@ class BaseHelper:
 
         response = requests.get(_url, headers=self.headers)
         if response.status_code in (403, 404, 500):
-            raise EntryNotFound
+            raise ObjectNotFound
         if not response:
             raise InternalServiceError(
                 f"Bad request. url: {_url}, status: {response.status_code}, body: {response.text}"

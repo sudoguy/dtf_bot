@@ -1,10 +1,10 @@
 from rest_framework.exceptions import APIException
 
 
-class EntryNotFound(APIException):
+class ObjectNotFound(APIException):
     status_code = 400
-    default_detail = "Entry not found"
-    default_code = "entry_not_found"
+    default_detail = "Object not found"
+    default_code = "object_not_found"
 
 
 class InternalServiceError(APIException):
