@@ -20,7 +20,7 @@ sentry-sdk = "^0.8.0"
 pylint = "^2.3"
 flake8 = "^3.7"
 pylint-django = "^2.0"
-black = {version = "^18.3-alpha.0",allows-prereleases = true}
+black = {version = "^18.3-alpha.0", allow-prereleases = true}
 
 [tool.black]
 line-length = 100
