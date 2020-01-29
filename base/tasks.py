@@ -32,6 +32,7 @@ def handle_comment(data: dict):
         id=data["id"], text=data["text"], reply_to=reply_to, last_response=data, entry=entry
     )
     new_comment.save()
+    logging.info(f"Created comment #{data['id']}")
 
 
 @app.task(
@@ -79,7 +80,7 @@ def task_update_last_entries():
 
 
 @periodic_task(
-    run_every=(crontab(minute="*/5")), name="task_update_all_entries", ignore_result=True
+    run_every=(crontab(minute="*/30")), name="task_update_all_entries", ignore_result=True
 )
 def task_update_all_entries():
     dtf = DTFHelper()

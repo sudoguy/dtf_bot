@@ -39,8 +39,11 @@ class DTFHelper(BaseHelper):
 
     def pull_user(self, user_id: int):
         url = f"user/{user_id}"
-        user = self.send_request(url)
-
+        try:
+            user = self.send_request(url)
+        except ObjectNotFound:
+            logging.info(f"user #{user_id} not found")
+            return
         user_id = user["id"]
         name = user["name"]
         url = user["url"]

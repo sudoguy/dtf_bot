@@ -1,3 +1,4 @@
+import logging
 import os
 from urllib.parse import urljoin
 
@@ -15,6 +16,7 @@ class BaseHelper:
 
         response = requests.get(_url, headers=self.headers)
         if response.status_code in (403, 404, 500):
+            logging.info(f"Bad response - url: {_url}, status_code: {response.status_code}")
             raise ObjectNotFound
         if not response:
             raise InternalServiceError(
