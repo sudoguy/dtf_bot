@@ -1,4 +1,4 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 RUN mkdir /install
 WORKDIR /install
@@ -7,7 +7,7 @@ RUN apk add --no-cache --virtual .build-deps \
     gcc \
     python3-dev \
     libc-dev \
-    linux-headers \ 
+    linux-headers \
     && \
     apk add --no-cache \
     postgresql-dev
