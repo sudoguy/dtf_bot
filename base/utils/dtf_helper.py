@@ -7,7 +7,7 @@ from .base_helper import BaseHelper
 
 
 class DTFHelper(BaseHelper):
-    base_url = "https://api.dtf.ru/v1.6/"
+    base_url = "https://api.dtf.ru/v1.8/"
 
     def last_entry_id(self):
         url = "timeline/index/recent?count=1"
