@@ -3,7 +3,6 @@ from django.db import models
 
 
 class Skipped(BaseModel):
-    id = models.BigIntegerField(primary_key=True)
     object_id = models.BigIntegerField()
     object_type = models.CharField(max_length=255)
 
