@@ -42,7 +42,9 @@ class DTFHelper(BaseHelper):
         try:
             user = self.send_request(url)
         except ObjectNotFound:
-            logging.info(f"user #{user_id} not found")
+            Skipped.objects.update_or_create(object_type="user", object_id=user_id)
+            logging.info(f"user #{user_id} not found, skipped")
+
             return
         user_id = user["id"]
         name = user["name"]
