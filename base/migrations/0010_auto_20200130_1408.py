@@ -15,7 +15,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
                 ('object_id', models.BigIntegerField()),
                 ('object_type', models.CharField(max_length=255)),
             ],
