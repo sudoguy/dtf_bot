@@ -1,12 +1,13 @@
-version: '3.1'
+version: "3.1"
 
 services:
-
   app:
     build:
       context: .
     container_name: app
     restart: always
+    sysctls:
+      net.core.somaxconn: 1024
     environment:
       POSTGRES_HOST: db
     ports:
@@ -30,6 +31,7 @@ services:
 
   redis:
     image: "redis:latest"
+    command: ["redis-server", "--appendonly", "yes"]
     ports:
       - "${REDIS_PORT}:6379"
     restart: always
