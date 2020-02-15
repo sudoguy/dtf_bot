@@ -1,6 +1,7 @@
-from .base import BaseModel
-from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django.db import models
+
+from .base import BaseModel
 
 
 class User(BaseModel):

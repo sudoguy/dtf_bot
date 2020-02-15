@@ -1,8 +1,8 @@
+from django.contrib.postgres.fields import JSONField
+from django.db import models
+
 from .base import BaseModel
 from .entry import Entry
-from django.db import models
-from django.contrib.postgres.fields import JSONField
-
 
 OTHER, ANDROID, IOS = range(3)
 UNKNOWN = None

@@ -89,7 +89,9 @@ def task_update_all_entries():
     all_entries_ids = range(1, last_id)
 
     existed_entries = Entry.objects.filter(id__in=range(1, last_id)).values_list("id", flat=True)
-    skipped_entries = Skipped.objects.filter(object_type="entry").values_list("object_id", flat=True)
+    skipped_entries = Skipped.objects.filter(object_type="entry").values_list(
+        "object_id", flat=True
+    )
 
     not_existed_entries = set(all_entries_ids) - set(existed_entries) - set(skipped_entries)
 

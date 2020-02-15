@@ -1,9 +1,9 @@
 from rest_framework.serializers import (
-    Serializer,
     CharField,
     ChoiceField,
     IntegerField,
     JSONField,
+    Serializer,
     URLField,
     UUIDField,
 )

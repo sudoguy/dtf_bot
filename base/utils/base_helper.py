@@ -2,9 +2,9 @@ import logging
 import os
 from urllib.parse import urljoin
 
-from base.exceptions import ObjectNotFound, InternalServiceError
-
 import requests
+
+from base.exceptions import InternalServiceError, ObjectNotFound
 
 
 class BaseHelper:

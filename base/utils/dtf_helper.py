@@ -1,7 +1,7 @@
 import logging
 
-from base.models import Entry, Skipped, User
 from base.exceptions import ObjectNotFound
+from base.models import Entry, Skipped, User
 
 from .base_helper import BaseHelper
 
