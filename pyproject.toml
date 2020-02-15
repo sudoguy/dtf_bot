@@ -20,7 +20,7 @@ sentry-sdk = "^0.8.0"
 pylint = "^2.3"
 flake8 = "^3.7"
 pylint-django = "^2.0"
-black = {version = "^18.3-alpha.0", allow-prereleases = true}
+black = "^19.10b0"
 
 [tool.black]
 line-length = 100
@@ -43,4 +43,3 @@ exclude = '''
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-
