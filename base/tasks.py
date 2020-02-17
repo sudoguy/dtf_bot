@@ -6,7 +6,7 @@ from celery.task.schedules import crontab
 from django.core.exceptions import ObjectDoesNotExist
 
 from base.exceptions import InternalServiceError
-from base.models import Comment, Entry, Skipped
+from base.models import Comment, Entry, Skipped, User
 from base.utils.dtf_helper import DTFHelper
 from dtf_bot.celery import app
 
@@ -80,7 +80,7 @@ def task_update_last_entries():
 
 
 @periodic_task(
-    run_every=(crontab(minute="*/30")), name="task_update_all_entries", ignore_result=True
+    run_every=(crontab(hour="*/4", minute="0")), name="task_update_all_entries", ignore_result=True
 )
 def task_update_all_entries():
     dtf = DTFHelper()
@@ -96,5 +96,23 @@ def task_update_all_entries():
     not_existed_entries = set(all_entries_ids) - set(existed_entries) - set(skipped_entries)
 
     job = group([update_entry.s(entry_id) for entry_id in not_existed_entries][:500])
+
+    job.apply_async()
+
+
+@periodic_task(
+    run_every=(crontab(hour="*/3", minute="0")), name="task_update_all_users", ignore_result=True
+)
+def task_update_all_users():
+    last_id = User.objects.latest("id").id
+
+    all_users_ids = range(1, last_id)
+
+    existed_users = User.objects.filter(id__in=range(1, last_id)).values_list("id", flat=True)
+    skipped_users = Skipped.objects.filter(object_type="user").values_list("object_id", flat=True)
+
+    not_existed_users = set(all_users_ids) - set(existed_users) - set(skipped_users)
+
+    job = group([update_user.s(user_id) for user_id in not_existed_users][:500])
 
     job.apply_async()
