@@ -3,11 +3,13 @@ billiard==3.6.2.0
 celery==4.4.0
 certifi==2019.11.28
 chardet==3.0.4
+ddtrace==0.33.0
 django==2.2.10
 djangorestframework==3.11.0
 idna==2.8
 importlib-metadata==1.5.0; python_version < "3.8"
 kombu==4.6.7
+psutil==5.7.0
 psycopg2-binary==2.8.4
 python-dotenv==0.10.5
 pytz==2019.3
