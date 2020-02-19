@@ -10,7 +10,7 @@ services:
       net.core.somaxconn: 1024
     environment:
       POSTGRES_HOST: db
-      DD_TRACE_ANALYTICS_ENABLED: true
+      DD_TRACE_ANALYTICS_ENABLED: 1
     ports:
       - "8000:8000"
     command: sh /app/entrypoint.sh
