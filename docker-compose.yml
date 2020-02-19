@@ -15,6 +15,7 @@ services:
     command: sh /app/entrypoint.sh
     depends_on:
       - db
+      - datadog
 
   celery:
     build:
@@ -28,6 +29,17 @@ services:
     depends_on:
       - db
       - redis
+      - datadog
+
+  datadog:
+    image: "datadog/agent:7"
+    environment:
+      DD_API_KEY: ${DD_API_KEY}
+      DD_SITE: "datadoghq.eu"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
 
   redis:
     image: "redis:latest"
