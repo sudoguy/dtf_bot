@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "base",
+    "ddtrace.contrib.django",
 ]
 
 MIDDLEWARE = [

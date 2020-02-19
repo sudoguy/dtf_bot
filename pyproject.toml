@@ -15,6 +15,7 @@ uwsgi = "^2.0"
 celery = {version = "^4.3", extras= ["redis"]}
 requests = "^2.21"
 sentry-sdk = "^0.8.0"
+ddtrace = "^0.33.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.3"
