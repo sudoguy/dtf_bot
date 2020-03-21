@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime, timedelta
 
 from celery import group
 from celery.decorators import periodic_task
@@ -26,7 +27,10 @@ def handle_comment(data: dict):
     reply_to = data["reply_to"]["id"] if data["reply_to"] else None
     creator_id = data["creator"]["id"]
 
-    update_user.delay(creator_id)
+    time_threshold = datetime.now() - timedelta(days=1)
+    need_to_update = User.objects.filter(id=creator_id, updated_at__lt=time_threshold).exists()
+    if need_to_update:
+        update_user.delay(creator_id)
 
     new_comment = Comment(
         id=data["id"], text=data["text"], reply_to=reply_to, last_response=data, entry=entry
