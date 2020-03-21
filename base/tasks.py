@@ -27,7 +27,7 @@ def handle_comment(data: dict):
     reply_to = data["reply_to"]["id"] if data["reply_to"] else None
     creator_id = data["creator"]["id"]
 
-    time_threshold = datetime.now() - timedelta(days=1)
+    time_threshold = datetime.now() - timedelta(days=7)
     need_to_update = User.objects.filter(id=creator_id, updated_at__lt=time_threshold).exists()
     if need_to_update:
         update_user.delay(creator_id)
@@ -120,5 +120,19 @@ def task_update_all_users():
     not_existed_users = set(all_users_ids) - set(existed_users) - set(skipped_users)
 
     job = group([update_user.s(user_id) for user_id in not_existed_users][:500])
+
+    job.apply_async()
+
+
+@periodic_task(
+    run_every=(crontab(hour="*", minute="0")), name="task_check_skipped_users", ignore_result=True
+)
+def task_check_skipped_users():
+    time_threshold = datetime.now() - timedelta(days=7)
+    skipped_users = Skipped.objects.filter(
+        object_type="user", updated_at__lt=time_threshold
+    ).values_list("object_id", flat=True)
+
+    job = group([update_user.s(user_id) for user_id in skipped_users][:500])
 
     job.apply_async()
