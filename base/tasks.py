@@ -1,10 +1,11 @@
 import logging
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from celery import group
 from celery.decorators import periodic_task
 from celery.task.schedules import crontab
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
 
 from base.exceptions import InternalServiceError
 from base.models import Comment, Entry, Skipped, User
@@ -27,7 +28,7 @@ def handle_comment(data: dict):
     reply_to = data["reply_to"]["id"] if data["reply_to"] else None
     creator_id = data["creator"]["id"]
 
-    time_threshold = datetime.now() - timedelta(days=7)
+    time_threshold = timezone.now() - timedelta(days=7)
     need_to_update = User.objects.filter(id=creator_id, updated_at__lt=time_threshold).exists()
     if need_to_update:
         update_user.delay(creator_id)
@@ -128,7 +129,7 @@ def task_update_all_users():
     run_every=(crontab(hour="*", minute="0")), name="task_check_skipped_users", ignore_result=True
 )
 def task_check_skipped_users():
-    time_threshold = datetime.now() - timedelta(days=7)
+    time_threshold = timezone.now() - timedelta(days=7)
     skipped_users = Skipped.objects.filter(
         object_type="user", updated_at__lt=time_threshold
     ).values_list("object_id", flat=True)
