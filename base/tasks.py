@@ -31,6 +31,8 @@ def handle_comment(data: dict):
     need_to_update = User.objects.filter(id=creator_id, updated_at__lt=time_threshold).exists()
     if need_to_update:
         update_user.delay(creator_id)
+    else:
+        logging.info(f"User #{creator_id} was updated recently, skipped update")
 
     new_comment = Comment(
         id=data["id"], text=data["text"], reply_to=reply_to, last_response=data, entry=entry
