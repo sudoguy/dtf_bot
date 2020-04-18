@@ -9,13 +9,13 @@ services:
     sysctls:
       net.core.somaxconn: 1024
     environment:
-      POSTGRES_HOST: db
       DD_AGENT_HOST: datadog
       DD_TRACE_AGENT_PORT: 8126
       DD_API_KEY: ${DD_API_KEY}
       DD_TRACE_ANALYTICS_ENABLED: 1
       DD_APM_ENABLED: 1
       DD_APM_NON_LOCAL_TRAFFIC: 1
+    restart: always
     ports:
       - "8000:8000"
     command: sh /app/entrypoint.sh
@@ -32,14 +32,13 @@ services:
       DD_AGENT_HOST: datadog
       DD_TRACE_AGENT_PORT: 8126
       DD_API_KEY: ${DD_API_KEY}
-      DD_TRACE_ANALYTICS_ENABLED: 1
       DD_APM_ENABLED: 1
       DD_APM_NON_LOCAL_TRAFFIC: 1
       REDIS_HOST: redis
-      POSTGRES_HOST: db
-    command: celery worker -A dtf_bot -B --loglevel=info -c=4 # -P gevent
+      DD_TRACE_ANALYTICS_ENABLED: 1
+      DD_HOSTNAME: datadog
+    command: ddtrace-run celery worker -A dtf_bot -B --loglevel=info -c=4 # -P gevent
     depends_on:
-      - db
       - redis
       - datadog
 
@@ -47,7 +46,9 @@ services:
     image: "datadog/agent:7"
     environment:
       DD_API_KEY: ${DD_API_KEY}
+      DD_APM_ENABLED: 1
       DD_SITE: "datadoghq.eu"
+      DD_APM_NON_LOCAL_TRAFFIC: 1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /proc/:/host/proc/:ro
