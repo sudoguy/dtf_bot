@@ -56,7 +56,7 @@ services:
 
   redis:
     image: "redis:latest"
-    command: ["redis-server", "--appendonly", "yes"]
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASS}"]
     ports:
       - "${REDIS_PORT}:6379"
     restart: always
