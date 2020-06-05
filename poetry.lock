@@ -192,7 +192,7 @@ description = "A high-level Python Web framework that encourages rapid developme
 name = "django"
 optional = false
 python-versions = ">=3.6"
-version = "3.0.5"
+version = "3.0.7"
 
 [package.dependencies]
 asgiref = ">=3.2,<4.0"
@@ -626,11 +626,13 @@ ddtrace = [
     {file = "ddtrace-0.33.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:3b5d7d558eb2d63adb4320ac70850845a4d18732277a85b2e6716ec637408429"},
     {file = "ddtrace-0.33.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:cde371554b933cf81e39a98ddbec44c8c73be39ae55a3e628597395ae9b1a776"},
     {file = "ddtrace-0.33.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:5f25ee95c485565e35e2fe2bf1586abcb628f8761c0c06b459ff55cc2a198f26"},
+    {file = "ddtrace-0.33.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:27bf25ce0cb65a74019dfff154265b11633049a6db4c30fb30c5af4b9ca1a875"},
+    {file = "ddtrace-0.33.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:c55d2bcab829a51c4379ea773f63d50d70e8d606cf3f0921172c323f57cd8b8c"},
     {file = "ddtrace-0.33.0.tar.gz", hash = "sha256:26b0656498e4bc8bd637688617ce45ff4930fc6f23f734b5a16bacdf5971e24b"},
 ]
 django = [
-    {file = "Django-3.0.5-py3-none-any.whl", hash = "sha256:642d8eceab321ca743ae71e0f985ff8fdca59f07aab3a9fb362c617d23e33a76"},
-    {file = "Django-3.0.5.tar.gz", hash = "sha256:d4666c2edefa38c5ede0ec1655424c56dc47ceb04b6d8d62a7eac09db89545c1"},
+    {file = "Django-3.0.7-py3-none-any.whl", hash = "sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8"},
+    {file = "Django-3.0.7.tar.gz", hash = "sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2"},
 ]
 djangorestframework = [
     {file = "djangorestframework-3.11.0-py3-none-any.whl", hash = "sha256:05809fc66e1c997fd9a32ea5730d9f4ba28b109b9da71fccfa5ff241201fd0a4"},
