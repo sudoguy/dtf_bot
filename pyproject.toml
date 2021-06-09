@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-django = "^3.0"
+django = "^3.1"
 djangorestframework = "^3.9"
 python-dotenv = "^0.13"
 psycopg2-binary = "^2.8"
